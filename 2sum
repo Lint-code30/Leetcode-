@@ -1,21 +1,15 @@
+//This is a code solution for 2 sum
+import java.util.HashMap;
+
 class Solution {
-    public int lengthOfLongestSubstring(String s) {
-        Set<Character> charSet = new HashSet<>();
-
-        int maxlength = 0;
-        int left = 0;
-
-        for (int right = 0; right < s.length(); right++){
-
-            while (charSet.contains(s.charAt(right))){
-                charSet.remove(s.charAt(left));
-                left++;
+    public int[] twoSum(int[] nums, int target) {
+        HashMap<Integer, Integer> map = new HashMap<>();
+        for (int i = 0; i < nums.length; i++) {
+            if (map.containsKey(target - nums[i])) {
+                return new int[]{map.get(target - nums[i]), i};
             }
-
-            charSet.add(s.charAt(right));
-            maxlength = Math.max(maxlength, right - left + 1);
+            map.put(nums[i], i);
         }
-
-        return maxlength;
+        return new int[]{0};
     }
 }
